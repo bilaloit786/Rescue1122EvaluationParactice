@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
 
@@ -35,6 +36,14 @@ function PublicRoute({ children }) {
 }
 
 function AppRoutes() {
+  useEffect(() => {
+    const refreshTimer = window.setInterval(() => {
+      window.location.reload()
+    }, 5 * 60 * 1000)
+
+    return () => window.clearInterval(refreshTimer)
+  }, [])
+
   return (
     <Routes>
       {/* Public */}

@@ -59,14 +59,14 @@ export default function StaffDashboard() {
       </div>
 
       {/* Quick action */}
-      <div className="card card-hover" style={{ marginBottom: '1.5rem', cursor: 'pointer', border: '2px dashed var(--blue-200)' }} onClick={() => navigate('/staff/topics')}>
+      <div className="exam-cta-alert card-hover" onClick={() => navigate('/staff/topics')}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '1rem' }}>
-          <div style={{ width: 48, height: 48, borderRadius: 12, background: 'var(--blue-50)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--blue-700)' }}>
+          <div className="exam-cta-icon">
             <BookOpen size={22} />
           </div>
           <div style={{ flex: 1 }}>
-            <h3 style={{ color: 'var(--blue-800)', marginBottom: 2 }}>Take an Examination</h3>
-            <p style={{ color: 'var(--gray-500)', fontSize: '0.875rem', margin: 0 }}>
+            <h3 style={{ color: 'var(--blue-900)', marginBottom: 2 }}>Take an Examination</h3>
+            <p style={{ color: 'var(--ink-soft)', fontSize: '0.875rem', margin: 0 }}>
               25 MCQs from the official document question bank. Receive instant answer review and feedback.
             </p>
           </div>
