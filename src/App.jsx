@@ -23,6 +23,7 @@ import StaffManagement  from './pages/admin/StaffManagement'
 import AllResults       from './pages/admin/AllResults'
 import Leaderboard      from './pages/admin/Leaderboard'
 import QuestionBank     from './pages/admin/QuestionBank'
+import MasterPaper      from './pages/admin/MasterPaper'
 
 function PrivateRoute({ children, role }) {
   const { user } = useAuth()
@@ -75,6 +76,7 @@ function AppRoutes() {
         <Route path="results"element={<AllResults />} />
         <Route path="leaderboard" element={<Leaderboard />} />
         <Route path="question-bank" element={<QuestionBank />} />
+        <Route path="master-paper" element={<MasterPaper />} />
         <Route path="learning-material" element={<LearningMaterials />} />
         <Route path="change-password" element={<ChangePasswordPage />} />
       </Route>

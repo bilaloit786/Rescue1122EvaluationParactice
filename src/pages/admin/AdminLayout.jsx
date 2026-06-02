@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
-import { LayoutDashboard, Users, ClipboardList, Trophy, LogOut, Shield, Database, PanelLeftClose, PanelLeftOpen, BookMarked, KeyRound } from 'lucide-react'
+import { LayoutDashboard, Users, ClipboardList, Trophy, LogOut, Shield, Database, PanelLeftClose, PanelLeftOpen, BookMarked, KeyRound, FileText } from 'lucide-react'
 
 export default function AdminLayout() {
   const { user, logout } = useAuth()
@@ -16,6 +16,7 @@ export default function AdminLayout() {
     { to: '/admin/results',     label: 'All Results',    icon: <ClipboardList size={16} />, mobileLabel: 'Results' },
     { to: '/admin/leaderboard', label: 'Leaderboard',    icon: <Trophy size={16} />, mobileLabel: 'Ranks' },
     { to: '/admin/question-bank', label: 'Question Bank', icon: <Database size={16} />, mobileLabel: 'Bank' },
+    { to: '/admin/master-paper', label: 'Master Paper', icon: <FileText size={16} />, mobileLabel: 'Paper' },
     { to: '/admin/learning-material', label: 'Learning Material', icon: <BookMarked size={16} />, mobileLabel: 'Learn' },
     { to: '/admin/change-password', label: 'Change Password', icon: <KeyRound size={16} />, mobileLabel: 'Pass' },
   ]
