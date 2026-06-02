@@ -63,13 +63,22 @@ export default function LearningMaterials() {
   }
 
   const openMaterial = async (material) => {
+    const viewer = window.open('', '_blank')
+    if (!viewer) {
+      toast.error('Popup blocked. Please allow popups for this site and try again.')
+      return
+    }
+    viewer.document.title = material.title || 'Learning Material'
+    viewer.document.body.innerHTML = '<p style="font-family: sans-serif; padding: 24px;">Opening PDF...</p>'
+
     try {
       const { data } = await api.get(`/api/materials/${material.id}/download`, { responseType: 'blob' })
       const blob = new Blob([data], { type: 'application/pdf' })
       const url = window.URL.createObjectURL(blob)
-      window.open(url, '_blank', 'noopener,noreferrer')
-      window.setTimeout(() => window.URL.revokeObjectURL(url), 60_000)
+      viewer.location.href = url
+      window.setTimeout(() => window.URL.revokeObjectURL(url), 5 * 60 * 1000)
     } catch (err) {
+      viewer.close()
       toast.error(err.response?.data?.detail || 'Unable to open PDF')
     }
   }
