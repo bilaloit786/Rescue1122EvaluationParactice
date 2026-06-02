@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom'
 import { AuthProvider, useAuth } from './context/AuthContext'
 
 // Shared pages
@@ -14,6 +14,7 @@ import ExamPage         from './pages/staff/ExamPage'
 import ResultPage       from './pages/staff/ResultPage'
 import HistoryPage      from './pages/staff/HistoryPage'
 import LearningMaterials from './pages/LearningMaterials'
+import ChangePasswordPage from './pages/ChangePasswordPage'
 
 // Admin pages
 import AdminLayout      from './pages/admin/AdminLayout'
@@ -37,13 +38,17 @@ function PublicRoute({ children }) {
 }
 
 function AppRoutes() {
+  const location = useLocation()
+
   useEffect(() => {
+    if (location.pathname === '/staff/exam') return undefined
+
     const refreshTimer = window.setInterval(() => {
       window.location.reload()
     }, 5 * 60 * 1000)
 
     return () => window.clearInterval(refreshTimer)
-  }, [])
+  }, [location.pathname])
 
   return (
     <Routes>
@@ -60,6 +65,7 @@ function AppRoutes() {
         <Route path="result"  element={<ResultPage />} />
         <Route path="history" element={<HistoryPage />} />
         <Route path="learning-material" element={<LearningMaterials />} />
+        <Route path="change-password" element={<ChangePasswordPage />} />
       </Route>
 
       {/* Admin portal */}
@@ -70,6 +76,7 @@ function AppRoutes() {
         <Route path="leaderboard" element={<Leaderboard />} />
         <Route path="question-bank" element={<QuestionBank />} />
         <Route path="learning-material" element={<LearningMaterials />} />
+        <Route path="change-password" element={<ChangePasswordPage />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/login" replace />} />

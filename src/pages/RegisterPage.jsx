@@ -3,10 +3,12 @@ import { Link, useNavigate } from 'react-router-dom'
 import api from '../lib/api'
 import { DESIGNATIONS, DISTRICTS } from '../lib/topics'
 import toast from 'react-hot-toast'
+import { Eye, EyeOff } from 'lucide-react'
 
 export default function RegisterPage() {
   const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
+  const [showPassword, setShowPassword] = useState(false)
   const [form, setForm] = useState({
     full_name: '', father_name: '', email: '', username: '', password: '',
     designation: '', district: '', station: '', employee_id: '', phone: '',
@@ -89,7 +91,12 @@ export default function RegisterPage() {
               </div>
               <div className="form-group">
                 <label className="form-label">Password *</label>
-                <input {...inputProps('password', 'password', 'minimum 6 characters', true)} />
+                <div className="input-action-wrap">
+                  <input {...inputProps('password', showPassword ? 'text' : 'password', 'minimum 6 characters', true)} autoComplete="new-password" />
+                  <button type="button" className="input-action-btn" onClick={() => setShowPassword(show => !show)} aria-label={showPassword ? 'Hide password' : 'Show password'}>
+                    {showPassword ? <EyeOff size={17} /> : <Eye size={17} />}
+                  </button>
+                </div>
               </div>
             </div>
             <button className="btn btn-primary btn-block btn-lg" type="submit" disabled={loading} style={{ marginTop: '0.75rem' }}>
