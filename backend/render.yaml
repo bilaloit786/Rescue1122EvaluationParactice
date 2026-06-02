@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: rescue1122-api
+    env: python
+    region: singapore
+    plan: starter
+    buildCommand: pip install -r requirements.txt
+    startCommand: python start.py
+    envVars:
+      - key: DATABASE_URL
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: RESEND_API_KEY
+        sync: false
+      - key: EMAIL_FROM
+        sync: false
+      - key: FRONTEND_URL
+        sync: false
+      - key: ALLOWED_HOSTS
+        sync: false
+      - key: BCRYPT_ROUNDS
+        value: "12"
+      - key: ENVIRONMENT
+        value: production
+    healthCheckPath: /health

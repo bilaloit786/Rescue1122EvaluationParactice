@@ -1,10 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+.env
+.vercel/
+
+# Node / React
+node_modules/
+dist/
 .env
 .env.local
 .env.production
-node_modules/
-dist/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# Logs
 *.log
 logs/
-.vite/
-.DS_Store
-.vercel
+backend/reports/
+backend/metrics_*.csv
+
+# DB
+*.db
+*.db.bak*
+*.sqlite
+*.sqlite3
