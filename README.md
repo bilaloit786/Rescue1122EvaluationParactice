@@ -31,7 +31,7 @@ Common variables:
 Example:
 
 ```bash
-VITE_API_URL=http://127.0.0.1:8000
+VITE_API_URL=https://rescue1122evaluationbackend.onrender.com
 VITE_APP_NAME=Rescue 1122 Evaluation System
 ```
 
@@ -61,7 +61,11 @@ npm run preview
 
 ## Deployment
 
-`vercel.json` is included for Vercel deployment. Set `VITE_API_URL` in the Vercel dashboard so the frontend points to the deployed FastAPI backend.
+`vercel.json` is included for Vercel deployment. Set `VITE_API_URL` in the Vercel dashboard so the frontend points to the deployed FastAPI backend:
+
+```text
+https://rescue1122evaluationbackend.onrender.com
+```
 
 ## Security Notes
 

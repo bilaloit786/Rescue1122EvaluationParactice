@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
-import { LayoutDashboard, Users, ClipboardList, Trophy, LogOut, Shield, Database, PanelLeftClose, PanelLeftOpen } from 'lucide-react'
+import { LayoutDashboard, Users, ClipboardList, Trophy, LogOut, Shield, Database, PanelLeftClose, PanelLeftOpen, BookMarked } from 'lucide-react'
 
 export default function AdminLayout() {
   const { user, logout } = useAuth()
@@ -11,11 +11,12 @@ export default function AdminLayout() {
   const handleLogout = () => { logout(); navigate('/login') }
 
   const navItems = [
-    { to: '/admin',             label: 'Dashboard',      icon: <LayoutDashboard size={16} />, end: true },
-    { to: '/admin/staff',       label: 'User Management',  icon: <Users size={16} /> },
-    { to: '/admin/results',     label: 'All Results',    icon: <ClipboardList size={16} /> },
-    { to: '/admin/leaderboard', label: 'Leaderboard',    icon: <Trophy size={16} /> },
-    { to: '/admin/question-bank', label: 'Question Bank', icon: <Database size={16} /> },
+    { to: '/admin',             label: 'Dashboard',      icon: <LayoutDashboard size={16} />, end: true, mobileLabel: 'Home' },
+    { to: '/admin/staff',       label: 'User Management',  icon: <Users size={16} />, mobileLabel: 'Users' },
+    { to: '/admin/results',     label: 'All Results',    icon: <ClipboardList size={16} />, mobileLabel: 'Results' },
+    { to: '/admin/leaderboard', label: 'Leaderboard',    icon: <Trophy size={16} />, mobileLabel: 'Ranks' },
+    { to: '/admin/question-bank', label: 'Question Bank', icon: <Database size={16} />, mobileLabel: 'Bank' },
+    { to: '/admin/learning-material', label: 'Learning Material', icon: <BookMarked size={16} />, mobileLabel: 'Learn' },
   ]
 
   return (
@@ -65,7 +66,7 @@ export default function AdminLayout() {
         {navItems.map(item => (
           <NavLink key={item.to} to={item.to} end={item.end}>
             {item.icon}
-            <span>{item.label.replace('User Management', 'Users').replace('All Results', 'Results')}</span>
+            <span>{item.mobileLabel}</span>
           </NavLink>
         ))}
       </nav>

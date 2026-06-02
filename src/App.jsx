@@ -13,6 +13,7 @@ import TopicSelectPage  from './pages/staff/TopicSelectPage'
 import ExamPage         from './pages/staff/ExamPage'
 import ResultPage       from './pages/staff/ResultPage'
 import HistoryPage      from './pages/staff/HistoryPage'
+import LearningMaterials from './pages/LearningMaterials'
 
 // Admin pages
 import AdminLayout      from './pages/admin/AdminLayout'
@@ -58,6 +59,7 @@ function AppRoutes() {
         <Route path="exam"    element={<ExamPage />} />
         <Route path="result"  element={<ResultPage />} />
         <Route path="history" element={<HistoryPage />} />
+        <Route path="learning-material" element={<LearningMaterials />} />
       </Route>
 
       {/* Admin portal */}
@@ -67,6 +69,7 @@ function AppRoutes() {
         <Route path="results"element={<AllResults />} />
         <Route path="leaderboard" element={<Leaderboard />} />
         <Route path="question-bank" element={<QuestionBank />} />
+        <Route path="learning-material" element={<LearningMaterials />} />
       </Route>
 
       <Route path="*" element={<Navigate to="/login" replace />} />

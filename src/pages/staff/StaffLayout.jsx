@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { Outlet, NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../context/AuthContext'
 import { getDesignationLabel } from '../../lib/topics'
-import { LayoutDashboard, BookOpen, ClipboardList, LogOut, PanelLeftClose, PanelLeftOpen, UserCheck } from 'lucide-react'
+import { LayoutDashboard, BookOpen, ClipboardList, LogOut, PanelLeftClose, PanelLeftOpen, UserCheck, BookMarked } from 'lucide-react'
 
 export default function StaffLayout() {
   const { user, logout } = useAuth()
@@ -16,6 +16,7 @@ export default function StaffLayout() {
   const navItems = [
     { to: '/staff', label: 'Dashboard', icon: <LayoutDashboard size={16} />, end: true, mobileLabel: 'Home' },
     { to: '/staff/topics', label: 'Take Examination', icon: <BookOpen size={16} />, mobileLabel: 'Exam' },
+    { to: '/staff/learning-material', label: 'Learning Material', icon: <BookMarked size={16} />, mobileLabel: 'Learn' },
     { to: '/staff/history', label: 'My Results', icon: <ClipboardList size={16} />, mobileLabel: 'Results' },
   ]
 
