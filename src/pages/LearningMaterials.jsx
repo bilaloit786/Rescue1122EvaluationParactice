@@ -62,24 +62,22 @@ export default function LearningMaterials() {
     }
   }
 
-  const openMaterial = async (material) => {
-    const viewer = window.open('', '_blank')
-    if (!viewer) {
-      toast.error('Popup blocked. Please allow popups for this site and try again.')
-      return
-    }
-    viewer.document.title = material.title || 'Learning Material'
-    viewer.document.body.innerHTML = '<p style="font-family: sans-serif; padding: 24px;">Opening PDF...</p>'
-
+  const downloadMaterial = async (material) => {
     try {
       const { data } = await api.get(`/api/materials/${material.id}/download`, { responseType: 'blob' })
       const blob = new Blob([data], { type: 'application/pdf' })
       const url = window.URL.createObjectURL(blob)
-      viewer.location.href = url
-      window.setTimeout(() => window.URL.revokeObjectURL(url), 5 * 60 * 1000)
+      const link = document.createElement('a')
+      link.href = url
+      link.download = material.filename || `${material.title || 'learning-material'}.pdf`
+      link.style.display = 'none'
+      document.body.appendChild(link)
+      link.click()
+      link.remove()
+      window.setTimeout(() => window.URL.revokeObjectURL(url), 1000)
+      toast.success('Download started')
     } catch (err) {
-      viewer.close()
-      toast.error(err.response?.data?.detail || 'Unable to open PDF')
+      toast.error(err.response?.data?.detail || 'Unable to download PDF')
     }
   }
 
@@ -139,8 +137,8 @@ export default function LearningMaterials() {
                 </div>
               </div>
               <div className="material-actions">
-                <button className="btn btn-secondary btn-sm" onClick={() => openMaterial(material)}>
-                  <Download size={15} /> Open
+                <button className="btn btn-secondary btn-sm" onClick={() => downloadMaterial(material)}>
+                  <Download size={15} /> Download
                 </button>
                 {isAdmin && (
                   <button className="btn btn-danger btn-sm" onClick={() => deleteMaterial(material)} title="Remove material">
